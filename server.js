@@ -6,7 +6,7 @@ import productRouter from "./router/productRoutes.js";
 import userRouter from "./router/userRoutes.js";
 import orderRouter from "./router/orderRoutes.js";
 import uploadRouter from "./router/uploadRoutes.js";
-// import cors from "cors";
+import cors from "cors";
 // kết nối với mongo db
 dotenv.config();
 mongoose
@@ -19,21 +19,13 @@ mongoose
   });
 
 const app = express();
-// app.use(
-//   cors({
-//     origin: "https://mern-stack-api.onrender.com",
-//     methods: "GET,PUT,POST,DELETE",
-//   })
-// );
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 //express.json()là một phương thức được tích hợp sẵn để nhận ra Đối tượng Yêu cầu đến là một Đối tượng JSON . Phương thức này được gọi là phần mềm trung gian trong ứng dụng của bạn bằng cách sử dụng mã:app.use(express.json());
 app.use(express.json());
-app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
-});
 //express.urlencoded()là một phương thức được xây dựng sẵn để nhận ra Đối tượng Yêu cầu đến dưới dạng chuỗi hoặc mảng . Phương thức này được gọi là phần mềm trung gian trong ứng dụng của bạn bằng cách sử dụng mã:app.use(express.urlencoded());
 app.use(express.urlencoded({ extended: true }));
 //api khi thanh toán bằng paypal
