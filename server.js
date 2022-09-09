@@ -6,7 +6,7 @@ import productRouter from "./router/productRoutes.js";
 import userRouter from "./router/userRoutes.js";
 import orderRouter from "./router/orderRoutes.js";
 import uploadRouter from "./router/uploadRoutes.js";
-
+import cors from "cors";
 // kết nối với mongo db
 dotenv.config();
 mongoose
@@ -19,6 +19,11 @@ mongoose
   });
 
 const app = express();
+app.use(
+  cors({
+    origin: "http://localhost:5000",
+  })
+);
 //express.json()là một phương thức được tích hợp sẵn để nhận ra Đối tượng Yêu cầu đến là một Đối tượng JSON . Phương thức này được gọi là phần mềm trung gian trong ứng dụng của bạn bằng cách sử dụng mã:app.use(express.json());
 app.use(express.json());
 //express.urlencoded()là một phương thức được xây dựng sẵn để nhận ra Đối tượng Yêu cầu đến dưới dạng chuỗi hoặc mảng . Phương thức này được gọi là phần mềm trung gian trong ứng dụng của bạn bằng cách sử dụng mã:app.use(express.urlencoded());
