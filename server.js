@@ -21,7 +21,7 @@ mongoose
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5000",
+    origin: "https://mern-stack-api.onrender.com",
     methods: "GET,PUT,POST,DELETE",
   })
 );
